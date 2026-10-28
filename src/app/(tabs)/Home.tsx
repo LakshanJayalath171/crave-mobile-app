@@ -1,4 +1,5 @@
 import AppText from "@/components/AppText";
+import Product_card from "@/components/Product_card";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 const Home = () => {
@@ -48,6 +49,7 @@ const Home = () => {
           </AppText>
         </TouchableOpacity>
       </View>
+      {/* scroll selector */}
       <View className="mt-3">
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View className="text-center items-center justify-center mr-4">
@@ -81,6 +83,38 @@ const Home = () => {
             ></Image>
             <Text className="text-sm mt-2 text-center">Pizza</Text>
           </View>
+        </ScrollView>
+      </View>
+
+      {/* popular section */}
+
+      <View className="flex flex-row items-center justify-between">
+        <View>
+          <AppText weight="bold" className="text-primary text-lg mt-4">
+            Popular
+          </AppText>
+          <AppText weight="regular" className="text-main text-sm">
+            Our most popular dishes
+          </AppText>
+        </View>
+        <View>
+          <Text className="text-sms font-light">See All</Text>
+        </View>
+      </View>
+
+      <View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            paddingBottom: 10,
+            gap: 10,
+          }}
+        >
+          <Product_card />
+          <Product_card />
+          <Product_card />
+          <Product_card />
         </ScrollView>
       </View>
     </View>
