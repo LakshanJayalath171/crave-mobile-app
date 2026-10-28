@@ -1,6 +1,5 @@
-import { Text } from "react-native";
-import "../global.css";
+import { Redirect } from "expo-router";
 
 export default function HomeScreen() {
-  return <Text className="bg-primary">HomeScreen</Text>;
+  return <Redirect href="/(tabs)/Home" />;
 }
