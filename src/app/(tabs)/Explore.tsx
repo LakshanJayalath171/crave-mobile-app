@@ -1,10 +1,11 @@
-import { Text, View } from "react-native";
+import Header from "@/components/Header";
+import { ScrollView } from "react-native";
 
 const Explore = () => {
   return (
-    <View>
-      <Text>Explore</Text>
-    </View>
+    <ScrollView className="flex-1 bg-white px-4">
+      <Header />
+    </ScrollView>
   );
 };
 

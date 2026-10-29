@@ -1,10 +1,12 @@
 import AppText from "@/components/AppText";
+import Header from "@/components/Header";
 import Product_card from "@/components/Product_card";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 const Home = () => {
   return (
     <ScrollView className="flex-1 bg-[#FFF9F3] px-6 py-4">
+      <Header />
       {/* Hero Container */}
       <View className="w-full h-56 rounded-2xl overflow-hidden relative">
         {/* Background Image */}

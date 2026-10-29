@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="250" height="250" viewBox="0 0 250 250" role="img" aria-labelledby="title desc">
+  <title id="title">Crave favicon</title>
+  <desc id="desc">The original Crave app icon: a white chef hat and food-delivery mark on an orange rounded square.</desc>
+  <defs>
+    <linearGradient id="iconOrange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FB923C"/>
+      <stop offset="100%" stop-color="#C2410C"/>
+    </linearGradient>
+  </defs>
+  <g id="crave-favicon">
+    <rect x="0" y="0" width="250" height="250" rx="54" fill="url(#iconOrange)"/>
+    <path d="M79 92
+             C66 85 65 67 76 55
+             C87 43 105 45 115 55
+             C121 36 139 27 157 35
+             C173 42 178 58 173 72
+             C191 72 204 86 201 102
+             C199 114 190 122 178 124
+             H89
+             C81 117 77 105 79 92Z"
+          fill="#FFFFFF"/>
+    <path d="M91 120h86" stroke="#F97316" stroke-width="7" stroke-linecap="round"/>
+    <path d="M174 139
+             C161 125 144 119 126 123
+             C99 129 81 153 82 180
+             C83 208 105 228 132 229
+             C153 230 172 220 184 203
+             L163 188
+             C156 198 146 204 134 203
+             C119 202 108 191 108 176
+             C108 161 119 149 134 148
+             C145 147 155 151 163 159Z"
+          fill="#FFFFFF"/>
+    <g transform="translate(147 174) rotate(-25)" stroke="#F97316" stroke-width="6" stroke-linecap="round" fill="none">
+      <path d="M0 0v31"/>
+      <path d="M-11 -8v13M-4 -11v16M4 -11v16M11 -8v13"/>
+    </g>
+    <path d="M40 145h24M31 164h33M42 183h18" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>
