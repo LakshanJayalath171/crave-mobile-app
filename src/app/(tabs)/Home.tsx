@@ -4,7 +4,7 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 const Home = () => {
   return (
-    <View className="flex-1 bg-[#FFF9F3] px-6 py-4">
+    <ScrollView className="flex-1 bg-[#FFF9F3] px-6 py-4">
       {/* Hero Container */}
       <View className="w-full h-56 rounded-2xl overflow-hidden relative">
         {/* Background Image */}
@@ -117,7 +117,45 @@ const Home = () => {
           <Product_card />
         </ScrollView>
       </View>
-    </View>
+
+      {/* offers */}
+      <View className="py-6">
+        <View className="relative min-h-[158px] w-full flex-row overflow-hidden rounded-2xl bg-[#3A2D28] px-5 py-5">
+          <View className="flex-1 pr-3">
+            <AppText weight="bold" className="text-primary text-xs">
+              LIMITED-TIME OFFER
+            </AppText>
+
+            <AppText weight="bold" className="mt-2 text-white text-lg">
+              Your Meal, Your Deal
+            </AppText>
+            <AppText weight="regular" className="text-white/80 text-sm">
+              Save 20% on selected combos
+            </AppText>
+
+            <TouchableOpacity className="mt-3 flex-row items-center self-start rounded-lg bg-primary px-4 py-2">
+              <AppText weight="bold" className="text-white text-sm">
+                Explore Deals
+              </AppText>
+              <Text className="ml-2 text-white text-lg">→</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View className="relative w-[102px] items-center justify-center">
+            <Image
+              source={require("../../../assets/images/item01.png")}
+              resizeMode="cover"
+              className="h-24 w-24 rounded-2xl"
+            />
+            <View className="absolute bottom-2 left-0 rounded-full bg-discount px-3 py-1">
+              <AppText weight="bold" className="text-white text-xs">
+                20% OFF
+              </AppText>
+            </View>
+          </View>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 

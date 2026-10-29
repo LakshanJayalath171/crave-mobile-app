@@ -8,7 +8,7 @@ const Product_card = () => {
       {/* Product Image */}
       <Image
         source={require("../../assets/images/item01.png")}
-        className="w-full h-24"
+        className="w-full h-32"
         resizeMode="cover"
       />
 
