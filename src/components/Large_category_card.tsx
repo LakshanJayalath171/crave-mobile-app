@@ -2,7 +2,7 @@ import { Image } from "expo-image";
 import { View } from "react-native";
 import AppText from "./AppText";
 
-const Large_category_card = () => {
+const Ongoing_orders_card = () => {
   return (
     <View className="flex-row items-start justify-start gap-2 mt-3 border border-orange-600 p-1 rounded-lg">
       <View>
@@ -31,4 +31,4 @@ const Large_category_card = () => {
   );
 };
 
-export default Large_category_card;
+export default Ongoing_orders_card;
