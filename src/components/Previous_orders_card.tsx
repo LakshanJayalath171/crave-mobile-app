@@ -5,7 +5,7 @@ import AppText from "./AppText";
 
 const Previous_orders_card = () => {
   return (
-    <View className="flex-row items-center justify-start gap-3">
+    <View className=" flex-row items-center justify-start gap-3 mt-3">
       <View>
         <Image
           source={require("../../assets/images/item01.png")}

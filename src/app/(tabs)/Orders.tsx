@@ -43,6 +43,9 @@ const Orders = () => {
         </View>
         <View className="mt-2">
           <Previous_orders_card />
+          <Previous_orders_card />
+          <Previous_orders_card />
+          <Previous_orders_card />
         </View>
       </View>
     </View>
