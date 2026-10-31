@@ -1,9 +1,11 @@
-import { Text, View } from "react-native";
+import Profile_header from "@/components/Profile_header";
+import { View } from "react-native";
 
 const Profile = () => {
   return (
-    <View>
-      <Text>Profile</Text>
+    <View className="flex-1 px-4">
+      {/* heading */}
+      <Profile_header />
     </View>
   );
 };
