@@ -4,7 +4,6 @@ import { useColorScheme } from "react-native";
 import {
   SafeAreaProvider,
   SafeAreaView,
-  useSafeAreaInsets,
 } from "react-native-safe-area-context";
 
 import {
@@ -18,7 +17,6 @@ import "../global.css";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  const insets = useSafeAreaInsets();
   const [fontsLoaded] = useFonts({
     PlusJakartaSans_400Regular,
     PlusJakartaSans_500Medium,

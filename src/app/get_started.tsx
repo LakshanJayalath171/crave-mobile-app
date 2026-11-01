@@ -1,6 +1,7 @@
 import AppText from "@/components/AppText";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 const GetStarted = () => {
@@ -20,7 +21,10 @@ const GetStarted = () => {
       />
 
       <View className="absolute bottom-32 left-0 flex items-center justify-center w-full">
-        <TouchableOpacity className="rounded-full bg-primary px-6 py-4">
+        <TouchableOpacity
+          onPress={() => router.push("/(auth)/sign-up")}
+          className="rounded-full bg-primary px-6 py-4"
+        >
           <AppText className="text-xl font-bold text-white" weight="bold">
             Get Started
           </AppText>
@@ -54,13 +58,13 @@ const GetStarted = () => {
             className="mt-6 text-sm text-text-secondary text-center"
             weight="bold"
           >
-            Don't have an account?
+            Already have an account?
           </AppText>
           <AppText
             className="mt-6 text-sm text-center text-primary"
             weight="bold"
           >
-            Sign Up
+            Sign In
           </AppText>
         </View>
       </View>
