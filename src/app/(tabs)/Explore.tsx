@@ -1,12 +1,12 @@
 import AppText from "@/components/AppText";
 import Header from "@/components/Header";
 import Product_card from "@/components/Product_card";
+import useCategory from "@/hooks/useCategory";
 import {
   ArrowDownWideNarrow,
   ListSortAscendingIcon,
   Search,
 } from "lucide-react-native";
-import React from "react";
 import {
   ScrollView,
   Text,
@@ -14,11 +14,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Explore = () => {
-  const [isAll, setIsAll] = React.useState(true);
+  const { data: categories, isLoading: categoriesLoading } = useCategory();
   return (
     <SafeAreaView className="flex-1" edges={["top"]}>
       <ScrollView className="flex-1 bg-white px-4">
@@ -51,29 +50,13 @@ const Explore = () => {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity>
-              <View className="bg-gray-100 px-4 py-2 rounded-full">
-                <Text className="text-sm font-bold">🍕 Pizza</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <View className="bg-gray-100 px-4 py-2 rounded-full">
-                <Text className="text-sm font-bold">🍔 Burgers</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <View className="bg-gray-100 px-4 py-2 rounded-full">
-                <Text className="text-sm font-bold">🥗 Salads</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <View className="bg-gray-100 px-4 py-2 rounded-full">
-                <Text className="text-sm font-bold">🍣 Sushi</Text>
-              </View>
-            </TouchableOpacity>
+            {categories.map((category) => (
+              <TouchableOpacity key={category?._id}>
+                <View className="bg-gray-100 px-4 py-2 rounded-full">
+                  <Text className="text-sm font-bold">{category?.name}</Text>
+                </View>
+              </TouchableOpacity>
+            ))}
           </ScrollView>
         </View>
 

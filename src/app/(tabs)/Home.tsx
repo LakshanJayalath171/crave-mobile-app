@@ -1,10 +1,15 @@
 import AppText from "@/components/AppText";
 import Header from "@/components/Header";
 import Product_card from "@/components/Product_card";
+import useCategory from "@/hooks/useCategory";
+import useProducts from "@/hooks/useProducts";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Home = () => {
+  const { data: products, isLoading: productsLoading } = useProducts();
+  const { data: categories, isLoading: categoriesLoading } = useCategory();
+
   return (
     <SafeAreaView className="flex-1" edges={["top"]}>
       <ScrollView className="flex-1 bg-[#FFF9F3] px-6 py-4">
@@ -56,37 +61,20 @@ const Home = () => {
         {/* scroll selector */}
         <View className="mt-3">
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View className="text-center items-center justify-center mr-4">
-              <Image
-                source={require("../../../assets/images/category01.png")}
-                className="w-24 h-24 rounded-full"
-              ></Image>
-              <Text className="text-sm mt-2 text-center">Pizza</Text>
-            </View>
-
-            <View className="text-center items-center justify-center mr-4">
-              <Image
-                source={require("../../../assets/images/category01.png")}
-                className="w-24 h-24 rounded-full"
-              ></Image>
-              <Text className="text-sm mt-2 text-center">Pizza</Text>
-            </View>
-
-            <View className="text-center items-center justify-center mr-4">
-              <Image
-                source={require("../../../assets/images/category01.png")}
-                className="w-24 h-24 rounded-full"
-              ></Image>
-              <Text className="text-sm mt-2 text-center">Pizza</Text>
-            </View>
-
-            <View className="text-center items-center justify-center mr-4">
-              <Image
-                source={require("../../../assets/images/category01.png")}
-                className="w-24 h-24 rounded-full"
-              ></Image>
-              <Text className="text-sm mt-2 text-center">Pizza</Text>
-            </View>
+            {categories.map((category) => (
+              <View
+                key={category?._id}
+                className="text-center items-center justify-center mr-4"
+              >
+                <Image
+                  source={{ uri: category?.image_url }}
+                  className="w-24 h-24 rounded-full"
+                ></Image>
+                <Text className="text-sm mt-2 text-center">
+                  {category?.name}
+                </Text>
+              </View>
+            ))}
           </ScrollView>
         </View>
 

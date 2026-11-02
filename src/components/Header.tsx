@@ -22,11 +22,12 @@ const Header = () => {
           <View>
             <ShoppingCart size={24} className="text-orange-500" />
           </View>
-          <View className="p-4 bg-primary rounded-full">
-            <View className="w-3 h-3 bg-orange-500 rounded-full items-center justify-center">
-              <AppText weight="bold" className="text-white text-xs">
-                K
-              </AppText>
+          <View className="p-4 rounded-full">
+            <View className="w-3 h-3 border-2 border-orange-500 rounded-full items-center justify-center">
+              <Image
+                source={require("../../assets/images/avatar.png")}
+                style={{ width: 40, height: 40, borderRadius: 50 }}
+              />
             </View>
           </View>
         </View>
