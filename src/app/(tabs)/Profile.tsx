@@ -1,10 +1,29 @@
 import AppText from "@/components/AppText";
 import Profile_header from "@/components/Profile_header";
+import { useAuthStore } from "@/store/authStore";
 import { Image } from "expo-image";
 import { ChevronRight, LogOut, Verified } from "lucide-react-native";
-import { View } from "react-native";
+import { router } from "expo-router";
+import { TouchableOpacity, View } from "react-native";
+import Toast from "react-native-toast-message";
 
 const Profile = () => {
+  const logout = useAuthStore((state) => state.logout);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      router.replace("/(auth)/sign-in");
+    } catch (error) {
+      console.error("Failed to log out:", error);
+      Toast.show({
+        type: "error",
+        text1: "Logout Failed",
+        text2: "Please try again.",
+      });
+    }
+  };
+
   return (
     <View className="flex-1 px-4">
       {/* heading */}
@@ -106,12 +125,17 @@ const Profile = () => {
 
       {/* logout */}
       <View className="mt-10">
-        <View className="flex-row items-center justify-center">
+        <TouchableOpacity
+          accessibilityRole="button"
+          accessibilityLabel="Log out"
+          onPress={handleLogout}
+          className="flex-row items-center justify-center"
+        >
           <LogOut size={20} color={"red"} />
           <AppText className="text-red-500 text-lg ml-2" weight="bold">
             Logout
           </AppText>
-        </View>
+        </TouchableOpacity>
         <AppText
           className="text-text-secondary text-xs mt-1 text-center"
           weight="regular"

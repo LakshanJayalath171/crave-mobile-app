@@ -1,24 +1,59 @@
+import axiosInstance from "@/api/axiosInstance";
 import AppText from "@/components/AppText";
 import { Image } from "expo-image";
 import { router } from "expo-router";
+import * as SecureStore from "expo-secure-store";
 import React from "react";
 import { ScrollView, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Toast from "react-native-toast-message";
+import { useAuthStore } from "../../store/authStore";
 
 const sign_in = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const setUser = useAuthStore((state) => state.setUser);
+  const handleSignIn = async () => {
+    try {
+      if (!email || !password) {
+        Toast.show({
+          type: "error",
+          text1: "Login Failed",
+          text2: "Please enter both email and password.",
+        });
+        return;
+      }
 
-  const handleSignIn = () => {
-    Toast.show({
-      type: "success",
-      text1: "Sign In Successful",
-      text2: "You have successfully signed in.",
-      visibilityTime: 3000,
-      position: "top",
-    });
+      const response = await axiosInstance.post("/auth/user/login", {
+        email: email,
+        password: password,
+      });
+      if (response.status === 200) {
+        const token = response.data.token;
+        await SecureStore.setItemAsync("token", token);
+        axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+        setUser(response.data.user);
+
+        Toast.show({
+          type: "success",
+          text1: "Login Successful",
+          text2: "You have successfully logged in.",
+        });
+
+        router.push("/(tabs)/Home");
+      }
+    } catch (err) {
+      Toast.show({
+        type: "error",
+        text1: "Login Failed",
+        text2:
+          err instanceof Error
+            ? err.message
+            : "An error occurred during login.",
+      });
+    }
   };
+
   return (
     <SafeAreaView edges={["top", "bottom"]} className="flex-1 bg-white">
       <ScrollView className="flex-1 bg-white">

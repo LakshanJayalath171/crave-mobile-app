@@ -61,6 +61,7 @@ const GetStarted = () => {
             Already have an account?
           </AppText>
           <AppText
+            onPress={() => router.push("/(auth)/sign-in")}
             className="mt-6 text-sm text-center text-primary"
             weight="bold"
           >
