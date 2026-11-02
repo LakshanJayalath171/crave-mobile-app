@@ -7,7 +7,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const Home = () => {
   return (
     <SafeAreaView className="flex-1" edges={["top"]}>
-      {" "}
       <ScrollView className="flex-1 bg-[#FFF9F3] px-6 py-4">
         <Header />
         {/* Hero Container */}

@@ -10,6 +10,7 @@ import Toast from "react-native-toast-message";
 
 const Profile = () => {
   const logout = useAuthStore((state) => state.logout);
+  const user = useAuthStore((state) => state.user);
 
   const handleLogout = async () => {
     try {
@@ -39,10 +40,10 @@ const Profile = () => {
             className="rounded-full"
           />
           <AppText className="text-2xl text-black/70 mt-3" weight="bold">
-            John Doe
+            {user?.data?.first_name} {user?.data?.last_name}
           </AppText>
           <AppText className="text-black/70 mt-1" weight="medium">
-            john.doe@example.com
+            {user?.data?.email}
           </AppText>
           <View className="flex-row items-center justify-center gap-1">
             <AppText className="text-primary" weight={"bold"}>
@@ -81,7 +82,7 @@ const Profile = () => {
                 First Name
               </AppText>
               <AppText className="text-black/70" weight="regular">
-                John
+                {user?.data?.first_name || "N/A"}
               </AppText>
             </View>
             <View className="flex-1">
@@ -89,7 +90,7 @@ const Profile = () => {
                 Last Name
               </AppText>
               <AppText className="text-black/70" weight="regular">
-                Doe
+                {user?.data?.last_name || "N/A"}
               </AppText>
             </View>
           </View>
@@ -100,7 +101,7 @@ const Profile = () => {
               Email
             </AppText>
             <AppText className="text-black/70 px-4" weight="regular">
-              john.doe@example.com
+              {user?.data?.email || "N/A"}
             </AppText>
           </View>
 
@@ -111,7 +112,7 @@ const Profile = () => {
                 Phone Number
               </AppText>
               <AppText className="text-black/70" weight="regular">
-                (123) 456-7890
+                {user?.data?.phone_number || "N/A"}
               </AppText>
             </View>
             <View className="flex-1">
@@ -119,7 +120,7 @@ const Profile = () => {
                 Birth Date
               </AppText>
               <AppText className="text-black/70" weight="regular">
-                January 1, 1990
+                {user?.data?.birth_date || "N/A"}
               </AppText>
             </View>
           </View>
