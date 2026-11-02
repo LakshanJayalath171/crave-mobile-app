@@ -1,3 +1,4 @@
+import { useCartStore } from "@/hooks/useCartStore";
 import { Star } from "lucide-react-native";
 import { Image, TouchableOpacity, View } from "react-native";
 import AppText from "./AppText";
@@ -18,6 +19,8 @@ const Product_card = ({
   price,
   image_url,
 }: ProductCardProps) => {
+  const addToCart = useCartStore((state) => state.addToCart);
+
   return (
     <View className="w-60 mt-3 rounded-xl bg-white overflow-hidden">
       {/* Product Image */}
@@ -56,14 +59,53 @@ const Product_card = ({
             {price}
           </AppText>
 
-          <TouchableOpacity
-            activeOpacity={0.7}
-            className="bg-primary w-8 h-8 rounded-full flex items-center justify-center"
-          >
-            <AppText weight="bold" className="text-white text-lg mb-2">
-              +
-            </AppText>
-          </TouchableOpacity>
+          <View>
+            <View className="flex-row items-center justify-end gap-2">
+              <AppText weight="regular" className="text-secondary text-xs">
+                {"1"} {/* Replace with actual quantity if available */}
+              </AppText>
+              <View>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() =>
+                    addToCart({
+                      product_id: _id,
+                      product_name: name,
+                      product_image: image_url,
+                      product_price: price,
+                      product_quantity: 1,
+                    })
+                  }
+                  className="bg-primary w-8 h-8 rounded-full flex items-center justify-center"
+                  accessibilityLabel={`Add ${name} to cart`}
+                >
+                  <AppText weight="bold" className="text-white text-lg mb-2">
+                    +
+                  </AppText>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() =>
+                    addToCart({
+                      product_id: _id,
+                      product_name: name,
+                      product_image: image_url,
+                      product_price: price,
+                      product_quantity: 1,
+                    })
+                  }
+                  className="bg-green-400 w-8 h-8 rounded-full flex items-center justify-center"
+                  accessibilityLabel={`Add ${name} to cart`}
+                >
+                  <AppText weight="bold" className="text-white text-lg mb-2">
+                    +
+                  </AppText>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
         </View>
       </View>
     </View>

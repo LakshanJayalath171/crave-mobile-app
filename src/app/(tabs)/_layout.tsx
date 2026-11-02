@@ -15,14 +15,15 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: true,
+        animation: "none",
         tabBarActiveTintColor: "#F97316",
         tabBarInactiveTintColor: "#9A8B83",
         tabBarStyle: {
           backgroundColor: "#FFFFFF",
           borderTopColor: "#F1E5DC",
-          height: 60,
-          paddingTop: 10,
-          paddingBottom: 80,
+          height: 60 + insets.bottom,
+          paddingTop: 8,
+          paddingBottom: insets.bottom,
         },
         tabBarLabelStyle: {
           fontSize: 11,

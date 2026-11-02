@@ -5,7 +5,7 @@ import { useCategorizedProducts } from "@/hooks/useCategorizedProducts";
 import useCategory from "@/hooks/useCategory";
 import {
   ArrowDownWideNarrow,
-  ListSortAscendingIcon,
+  ListSortAscending,
   Search,
 } from "lucide-react-native";
 import {
@@ -34,7 +34,7 @@ const Explore = () => {
               <TextInput placeholder="Search dishes/pizza/burgers" />
             </View>
             <TouchableOpacity>
-              <ListSortAscendingIcon size={20} />
+              <ListSortAscending size={20} />
             </TouchableOpacity>
           </View>
         </View>
@@ -68,7 +68,7 @@ const Explore = () => {
           <AppText className="text-lg font-bold">All</AppText>
           <View className="flex-row items-center gap-6">
             <TouchableOpacity className="flex-row items-center gap-1">
-              <ListSortAscendingIcon size={16} color={"orange"} />
+              <ListSortAscending size={16} color={"orange"} />
               <AppText className="text-sm font-bold text-primary">
                 Filter
               </AppText>
@@ -83,7 +83,7 @@ const Explore = () => {
 
         {/* cards */}
         {categorizedProducts?.map((categoryItem) => (
-          <View className=" mt-2">
+          <View key={categoryItem.category} className=" mt-2">
             <AppText className="text-lg font-bold mt-4 text-primary">
               {categoryItem?.category}
             </AppText>
