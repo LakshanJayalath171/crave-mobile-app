@@ -2,20 +2,35 @@ import { Star } from "lucide-react-native";
 import { Image, TouchableOpacity, View } from "react-native";
 import AppText from "./AppText";
 
-const Product_card = () => {
+interface ProductCardProps {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  image_url: string;
+  rating?: number; // Optional rating prop
+}
+
+const Product_card = ({
+  _id,
+  name,
+  description,
+  price,
+  image_url,
+}: ProductCardProps) => {
   return (
     <View className="w-60 mt-3 rounded-xl bg-white overflow-hidden">
       {/* Product Image */}
       <Image
-        source={require("../../assets/images/item01.png")}
-        className="w-full h-32"
-        resizeMode="cover"
+        source={{ uri: image_url }}
+        className="w-full h-36"
+        resizeMode="contain"
       />
 
       {/* Product Details */}
       <View className="p-2">
         <AppText weight="bold" className="text-main text-md">
-          Pizza Margherita
+          {name}
         </AppText>
 
         <AppText
@@ -23,8 +38,7 @@ const Product_card = () => {
           className="text-secondary text-xs mt-1"
           numberOfLines={2}
         >
-          Pizza Margherita is a classic Italian pizza made with tomato,
-          mozzarella, and basil.
+          {description}
         </AppText>
 
         {/* Rating */}
@@ -32,14 +46,14 @@ const Product_card = () => {
           <Star size={16} color="#FBBF24" fill="#FBBF24" />
 
           <AppText weight="regular" className="text-secondary text-xs ml-1">
-            4.5
+            {"4.5"} {/* Replace with actual rating if available */}
           </AppText>
         </View>
 
         {/* Price and Add Button */}
         <View className="flex-row items-center justify-between mt-3">
           <AppText weight="bold" className="text-main text-md">
-            $12.99
+            {price}
           </AppText>
 
           <TouchableOpacity

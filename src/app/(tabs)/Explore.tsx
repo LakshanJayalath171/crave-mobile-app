@@ -1,6 +1,7 @@
 import AppText from "@/components/AppText";
 import Header from "@/components/Header";
 import Product_card from "@/components/Product_card";
+import { useCategorizedProducts } from "@/hooks/useCategorizedProducts";
 import useCategory from "@/hooks/useCategory";
 import {
   ArrowDownWideNarrow,
@@ -18,6 +19,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const Explore = () => {
   const { data: categories, isLoading: categoriesLoading } = useCategory();
+  const { data: categorizedProducts, isLoading: productsLoading } =
+    useCategorizedProducts();
   return (
     <SafeAreaView className="flex-1" edges={["top"]}>
       <ScrollView className="flex-1 bg-white px-4">
@@ -50,7 +53,7 @@ const Explore = () => {
               </View>
             </TouchableOpacity>
 
-            {categories.map((category) => (
+            {categories?.map((category) => (
               <TouchableOpacity key={category?._id}>
                 <View className="bg-gray-100 px-4 py-2 rounded-full">
                   <Text className="text-sm font-bold">{category?.name}</Text>
@@ -79,51 +82,30 @@ const Explore = () => {
         </View>
 
         {/* cards */}
-        <View className="">
-          <AppText className="text-lg font-bold mt-4 text-primary">
-            Pizza
-          </AppText>
-          <ScrollView
-            horizontal
-            contentContainerStyle={{ gap: 8 }}
-            showsHorizontalScrollIndicator={false}
-            className="flex-row "
-          >
-            <Product_card />
-            <Product_card />
-            <Product_card />
-          </ScrollView>
-        </View>
-        <View className="">
-          <AppText className="text-lg font-bold mt-4 text-primary">
-            Burgers
-          </AppText>
-          <ScrollView
-            horizontal
-            contentContainerStyle={{ gap: 8 }}
-            showsHorizontalScrollIndicator={false}
-            className="flex-row "
-          >
-            <Product_card />
-            <Product_card />
-            <Product_card />
-          </ScrollView>
-        </View>
-        <View className="">
-          <AppText className="text-lg font-bold mt-4 text-primary">
-            Salads
-          </AppText>
-          <ScrollView
-            horizontal
-            contentContainerStyle={{ gap: 8 }}
-            showsHorizontalScrollIndicator={false}
-            className="flex-row "
-          >
-            <Product_card />
-            <Product_card />
-            <Product_card />
-          </ScrollView>
-        </View>
+        {categorizedProducts?.map((categoryItem) => (
+          <View className=" mt-2">
+            <AppText className="text-lg font-bold mt-4 text-primary">
+              {categoryItem?.category}
+            </AppText>
+            <ScrollView
+              horizontal
+              contentContainerStyle={{ gap: 8 }}
+              showsHorizontalScrollIndicator={false}
+              className="flex-row "
+            >
+              {categoryItem?.products?.map((product) => (
+                <Product_card
+                  key={product?._id}
+                  _id={product?._id}
+                  name={product?.name}
+                  description={product?.description}
+                  price={product?.price}
+                  image_url={product?.image_url}
+                />
+              ))}
+            </ScrollView>
+          </View>
+        ))}
       </ScrollView>
     </SafeAreaView>
   );

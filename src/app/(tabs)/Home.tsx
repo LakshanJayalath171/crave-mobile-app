@@ -61,7 +61,7 @@ const Home = () => {
         {/* scroll selector */}
         <View className="mt-3">
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {categories.map((category) => (
+            {categories?.map((category) => (
               <View
                 key={category?._id}
                 className="text-center items-center justify-center mr-4"
