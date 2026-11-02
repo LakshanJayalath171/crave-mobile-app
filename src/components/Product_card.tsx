@@ -20,7 +20,9 @@ const Product_card = ({
   image_url,
 }: ProductCardProps) => {
   const addToCart = useCartStore((state) => state.addToCart);
-
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const increaseQuantity = useCartStore((state) => state.increaseQuantity);
+  const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
   return (
     <View className="w-60 mt-3 rounded-xl bg-white overflow-hidden">
       {/* Product Image */}
@@ -67,20 +69,12 @@ const Product_card = ({
               <View>
                 <TouchableOpacity
                   activeOpacity={0.7}
-                  onPress={() =>
-                    addToCart({
-                      product_id: _id,
-                      product_name: name,
-                      product_image: image_url,
-                      product_price: price,
-                      product_quantity: 1,
-                    })
-                  }
+                  onPress={() => decreaseQuantity(_id)}
                   className="bg-primary w-8 h-8 rounded-full flex items-center justify-center"
-                  accessibilityLabel={`Add ${name} to cart`}
+                  accessibilityLabel={`Decrease ${name} quantity`}
                 >
                   <AppText weight="bold" className="text-white text-lg mb-2">
-                    +
+                    -
                   </AppText>
                 </TouchableOpacity>
               </View>

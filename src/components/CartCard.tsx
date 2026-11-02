@@ -1,7 +1,7 @@
+import { useCartStore, type CartItem } from "@/hooks/useCartStore";
 import { Image } from "expo-image";
 import { Trash } from "lucide-react-native";
 import { TouchableOpacity, View } from "react-native";
-import { useCartStore, type CartItem } from "@/hooks/useCartStore";
 import AppText from "./AppText";
 
 interface CartCardProps {
@@ -17,8 +17,9 @@ const CartCard = ({ item }: CartCardProps) => {
     <View className="flex-row items-center justify-start bg-white  rounded-lg shadow-md">
       <View>
         <Image
-          source={require("../../assets/images/category01.png")}
+          source={{ uri: item.product_image }}
           style={{ width: 80, height: 80, borderRadius: 8 }}
+          contentFit="contain"
         />
       </View>
       <View className="px-4 py-1">
