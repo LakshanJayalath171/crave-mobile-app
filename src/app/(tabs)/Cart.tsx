@@ -15,7 +15,6 @@ const Cart = () => {
   const totalItems = getTotalItems();
   const totalPrice = getTotalPrice();
 
-  console.log("Cart items:", items);
   return (
     <SafeAreaView className="flex-1" edges={["top"]}>
       <ScrollView className="flex-1 bg-white px-4">

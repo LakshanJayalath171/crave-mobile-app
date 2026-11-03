@@ -5,7 +5,9 @@ import { useCartStore } from "@/hooks/useCartStore";
 import AppText from "./AppText";
 
 const Header = () => {
-  const cartItemCount = useCartStore((state) => state.items.length);
+  const cartItemCount = useCartStore((state) =>
+    state.items.reduce((total, item) => total + item.product_quantity, 0),
+  );
 
   return (
     <View>
