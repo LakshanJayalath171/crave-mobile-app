@@ -3,7 +3,21 @@ import { CircleCheck, RefreshCw } from "lucide-react-native";
 import { TouchableOpacity, View } from "react-native";
 import AppText from "./AppText";
 
-const Previous_orders_card = () => {
+interface PreviousOrdersCardProps {
+  _id: string;
+  total_price: number;
+  date: string;
+  itemsCount: number;
+  status: string;
+}
+
+const Previous_orders_card = ({
+  _id,
+  total_price,
+  date,
+  itemsCount,
+  status,
+}: PreviousOrdersCardProps) => {
   return (
     <View className=" flex-row items-center justify-start gap-3 mt-3">
       <View>
@@ -14,21 +28,21 @@ const Previous_orders_card = () => {
       </View>
       <View className="flex-1">
         <View className="flex-row items-center justify-between ">
-          <AppText className="text-lg" weight="bold">
-            Chicken Burger
+          <AppText className="text-sm" weight="bold">
+            # {_id}
           </AppText>
-          <AppText className="text-lg text-primary" weight="medium">
-            $16.48
+          <AppText className="text-sm text-primary" weight="medium">
+            Rs.{total_price}
           </AppText>
         </View>
         <AppText className="text-xs text-gray-500" weight="medium">
-          Oct 27, 2026 · 2 items
+          {date.slice(0, 10) + " At " + date.slice(11, 16)} · {itemsCount} items
         </AppText>
         <View className="flex-row items-center justify-between mt-2">
           <View className="flex-row items-center gap-1">
             <CircleCheck size={16} color={"green"} />
             <AppText className="text-sm text-green-500" weight="medium">
-              Completed
+              {status}
             </AppText>
           </View>
           <TouchableOpacity className="flex-row items-center gap-1 bg bg-primary-soft px-2 py-1 rounded-lg">
