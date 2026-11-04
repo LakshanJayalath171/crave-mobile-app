@@ -4,12 +4,14 @@ import Header from "@/components/Header";
 import Ongoing_orders_card from "@/components/Large_category_card";
 import Previous_orders_card from "@/components/Previous_orders_card";
 import { useOrders } from "@/hooks/useOrders";
+import { router } from "expo-router";
 import { ChevronRightIcon } from "lucide-react-native";
-import { ScrollView, View } from "react-native";
+import { ScrollView, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Orders = () => {
   const { data: orders, isLoading, error } = useOrders();
+
   return (
     <SafeAreaView className="flex-1 bg-white" edges={["top"]}>
       <ScrollView className="flex-1 px-4">
@@ -47,7 +49,11 @@ const Orders = () => {
           </View>
           <View className="mt-2">
             {orders?.map((order) => (
-              <View key={order.id} className="mt-2">
+              <TouchableOpacity
+                onPress={() => router.push(`/order/${order._id}`)}
+                key={order.id}
+                className="mt-2"
+              >
                 <Previous_orders_card
                   _id={order._id}
                   total_price={order.total_price}
@@ -55,7 +61,7 @@ const Orders = () => {
                   itemsCount={order.items.length}
                   status={order.status}
                 />
-              </View>
+              </TouchableOpacity>
             ))}
           </View>
         </View>
