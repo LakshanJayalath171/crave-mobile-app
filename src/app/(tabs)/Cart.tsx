@@ -1,11 +1,16 @@
+import axiosInstance from "@/api/axiosInstance";
 import AppText from "@/components/AppText";
 import BlinkingDot from "@/components/Blinking_dot";
 import CartCard from "@/components/CartCard";
 import Header from "@/components/Header";
 import { useCartStore } from "@/hooks/useCartStore";
+import { useAuthStore } from "@/store/authStore";
+import { router } from "expo-router";
 import { ChevronsDown, CircleCheck, Trash2 } from "lucide-react-native";
+import { useEffect, useState } from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Toast from "react-native-toast-message";
 
 const Cart = () => {
   const items = useCartStore((state) => state.items);
@@ -14,6 +19,105 @@ const Cart = () => {
   const getTotalPrice = useCartStore((state) => state.getTotalPrice);
   const totalItems = getTotalItems();
   const totalPrice = getTotalPrice();
+
+  const { user } = useAuthStore((state) => state);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const cartItems = useCartStore((state) => state.items);
+
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  console.log("Cart items:", selectedAddress);
+  const placeOrder = async () => {
+    if (!isAuthenticated) {
+      Toast.show({
+        type: "error",
+        text1: "You need to be logged in to place an order.",
+        text2: "Please log in and try again.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (!user) {
+      Toast.show({
+        type: "error",
+        text1: "User information is missing. Please log in again.",
+        text2: "Please try again",
+        position: "top",
+      });
+      return;
+    }
+
+    if (!selectedAddress) {
+      Toast.show({
+        type: "error",
+        text1: "No address selected. Please select an address.",
+        text2: "Please try again",
+        position: "top",
+      });
+      return;
+    }
+
+    try {
+      const orderDetails = {
+        user_id: user.data._id,
+        user_name: `${user.data.first_name} ${user.data.last_name}`,
+        phone_number: user.data.phone_number,
+
+        items: items.map((item) => ({
+          product_id: item.product_id,
+          product_name: item.product_name,
+          product_price: item.product_price,
+          image_url: item.product_image,
+          quantity: item.product_quantity,
+        })),
+
+        address: [
+          {
+            lane: selectedAddress.lane,
+            street: selectedAddress.street,
+            city: selectedAddress.city,
+            postal_code: String(selectedAddress.postal_code),
+            is_default: selectedAddress.is_default,
+          },
+        ],
+
+        total_price: totalPrice,
+      };
+
+      const response = await axiosInstance.post("/orders", orderDetails);
+
+      if (response.status === 201) {
+        Toast.show({
+          type: "success",
+          text1: "Order placed successfully!",
+          text2: "Thank you for your purchase.",
+          position: "top",
+        });
+        clearCart();
+        router.push("/(tabs)/Orders");
+      }
+    } catch (error) {
+      Toast.show({
+        type: "error",
+        text1:
+          error instanceof Error
+            ? error.message
+            : "An unexpected error occurred.",
+        text2: "Please try again",
+        position: "top",
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (user?.data.addresses?.length > 0) {
+      const defaultAddress = user.data.addresses.find(
+        (address) => address.is_default,
+      );
+
+      setSelectedAddress(defaultAddress || user.data.addresses[0]);
+    }
+  }, [user]);
 
   return (
     <SafeAreaView className="flex-1" edges={["top"]}>
@@ -93,6 +197,7 @@ const Cart = () => {
 
         {/* Checkout button */}
         <TouchableOpacity
+          onPress={placeOrder}
           disabled={items.length === 0}
           className="mt-6 bg-primary py-3 rounded-lg items-center justify-center flex-row gap-2"
           style={{ opacity: items.length === 0 ? 0.5 : 1 }}
