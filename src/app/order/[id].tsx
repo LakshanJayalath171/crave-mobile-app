@@ -4,6 +4,7 @@ import { router, useLocalSearchParams } from "expo-router";
 import {
   ArrowLeft,
   Check,
+  CircleCheck,
   CircleHelp,
   MapPin,
   MessageSquareText,
@@ -269,14 +270,17 @@ const OrderDetails = () => {
             Payment Summary
           </AppText>
           <View style={styles.summaryRows}>
-            <SummaryRow label="Items Subtotal" value="$41.30" />
+            <SummaryRow
+              label="Items Subtotal"
+              value={"Rs. " + data?.total_price}
+            />
           </View>
           <View style={styles.totalRow}>
             <AppText weight="bold" style={styles.totalLabel}>
               Total Paid
             </AppText>
             <AppText weight="bold" style={styles.totalValue}>
-              $44.79
+              {data?.total_price ? `Rs.${data.total_price}` : "Loading..."}
             </AppText>
           </View>
           <View style={styles.paymentMethod}>
@@ -299,12 +303,26 @@ const OrderDetails = () => {
           </View>
         </Card>
 
-        <Pressable style={styles.reorderButton} accessibilityRole="button">
-          <RotateCcw size={20} color={colors.white} />
-          <AppText weight="bold" style={styles.reorderText}>
-            Reorder All Items ($41.30)
-          </AppText>
-        </Pressable>
+        {data?.status === "completed" || data?.status === "cancelled" ? (
+          <Pressable style={styles.reorderButton} accessibilityRole="button">
+            <RotateCcw size={20} color={colors.white} />
+            <AppText weight="bold" style={styles.reorderText}>
+              Reorder All Items ($41.30)
+            </AppText>
+          </Pressable>
+        ) : (
+          <View style={styles.reorderButton} accessibilityRole="button">
+            <CircleCheck size={16} color="white" />
+            <AppText
+              className="text-sm"
+              style={styles.reorderText}
+              weight="bold"
+            >
+              Mark As Completed
+            </AppText>
+          </View>
+        )}
+
         <View style={styles.bottomActions}>
           <Pressable style={styles.secondaryButton}>
             <AppText weight="bold" style={styles.secondaryButtonText}>

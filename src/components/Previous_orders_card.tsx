@@ -18,6 +18,10 @@ const Previous_orders_card = ({
   itemsCount,
   status,
 }: PreviousOrdersCardProps) => {
+  const formattedDate = date
+    ? `${date.slice(0, 10)} At ${date.slice(11, 16)}`
+    : "Date unavailable";
+
   return (
     <View className=" flex-row items-center justify-start gap-3 mt-3">
       <View>
@@ -36,7 +40,7 @@ const Previous_orders_card = ({
           </AppText>
         </View>
         <AppText className="text-xs text-gray-500" weight="medium">
-          {date.slice(0, 10) + " At " + date.slice(11, 16)} · {itemsCount} items
+          {formattedDate} · {itemsCount} items
         </AppText>
         <View className="flex-row items-center justify-between mt-2">
           <View className="flex-row items-center gap-1">

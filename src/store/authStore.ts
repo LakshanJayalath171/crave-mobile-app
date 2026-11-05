@@ -2,7 +2,7 @@ import * as SecureStore from "expo-secure-store";
 import { create } from "zustand";
 import axiosInstance from "../api/axiosInstance";
 
-interface User {
+interface UserData {
   _id: string;
   first_name: string;
   last_name: string;
@@ -11,6 +11,19 @@ interface User {
   role: string;
   birth_date: string;
   favorite_dishes: string[];
+  addresses: Address[];
+}
+
+interface Address {
+  lane: string;
+  street: string;
+  city: string;
+  postal_code: string | number;
+  is_default: boolean;
+}
+
+export interface User {
+  data: UserData;
 }
 
 interface AuthState {
@@ -43,7 +56,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
     try {
       const response = await axiosInstance.get("/auth/user/profile");
-      const userData: User = response.data;
+      const userData: User = response.data.user ?? response.data;
       set({ user: userData, isAuthenticated: true });
     } catch (error) {
       console.error("Failed to fetch user profile:", error);
