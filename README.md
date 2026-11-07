@@ -1,56 +1,150 @@
-# Welcome to your Expo app 👋
+# 🍔 Crave – Food Delivery Mobile Application
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern and user-friendly food delivery mobile application built with **React Native, Expo, and TypeScript**. Crave allows users to discover delicious meals, explore food categories, manage their shopping carts, place orders, and track their deliveries through an intuitive mobile experience.
 
-## Get started
+<p align="center">
+  <strong>Discover. Order. Enjoy.</strong>
+</p>
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## 📱 Screenshots
 
-2. Start the app
+--not added--
 
-   ```bash
-   npx expo start
-   ```
+## ✨ Features
 
-In the output, you'll find options to open the app in a
+### 🔐 Authentication
+- User registration and login.
+- JWT-based authentication.
+- Secure token storage using Expo SecureStore.
+- Persistent authentication sessions.
+- Protected navigation routes.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### 🏠 Home
+- Modern and intuitive home interface.
+- Featured food products.
+- Food categories.
+- Popular and recommended meals.
+- Quick access to product details.
 
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### 🔎 Explore
+- Browse available food products.
+- Discover different food categories.
+- Explore meals and product information.
+- View product prices and availability.
 
-## Get a fresh project
+### 🛒 Shopping Cart
+- Add products to the shopping cart.
+- Increase and decrease product quantities.
+- Remove products from the cart.
+- Automatically calculate the total price.
+- Global cart state management.
+  
 
-When you're ready, run:
+### 📦 Orders
+- Place food orders.
+- View ongoing orders.
+- View order history.
+- Track order statuses.
+- Real-time order status updates through WebSocket integration.(Still implementing)
 
-```bash
-npm run reset-project
+### 👤 Profile
+- View personal information.
+- Manage user details.
+- Manage delivery addresses.
+- View favourite dishes.
+- Secure logout functionality.
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| React Native | Cross-platform mobile development |
+| Expo | Mobile development platform |
+| TypeScript | Type-safe development |
+| Expo Router | File-based navigation |
+| NativeWind | Utility-first styling |
+| Zustand | Global state management |
+| Axios | HTTP client and API communication |
+| Expo SecureStore | Secure authentication token storage |
+| Expo Image | Optimized image rendering |
+| Lucide React Native | Icon library |
+| React Native Safe Area Context | Safe area handling |
+| React Native Toast Message | Application notifications |
+
+### Backend Technologies
+
+Crave communicates with a separate backend application built using:
+
+- NestJS
+- Node.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- Cloudinary
+- Secure payment with stripe
+
+---
+
+## 🎨 Design
+
+Crave follows a modern, minimal, and user-friendly design approach.
+
+**Primary Color Palette**
+
+| Color | Hex Code | Usage |
+|---|---|---|
+| Primary Orange | `#F97316` | Primary actions |
+| Hover Orange | `#EA580C` | Interactive elements |
+| Soft Orange | `#FFF0E5` | Secondary backgrounds |
+| Deep Orange | `#C2410C` | Accent elements |
+| Background | `#FFF9F3` | Main background |
+| Dark Text | `#241A17` | Primary typography |
+| Secondary Text | `#786B65` | Secondary typography |
+
+**Typography:** Plus Jakarta Sans
+
+---
+
+## 🔒 Security
+
+- JWT-based user authentication.
+- Secure token storage with Expo SecureStore.
+- Protected application routes.
+- Authenticated API requests.
+- Backend-managed user authorization.
+
+---
+
+## 🗺️ Future Improvements
+
+- [ ] Push notifications for order updates.
+- [ ] Online payment integration(On going).
+- [ ] Food ratings and reviews.
+- [ ] Advanced product search and filtering.
+- [ ] Location-based delivery tracking.
+- [ ] Favourite products and personalized recommendations.
+- [ ] Improved offline experience.
+
+---
+
+## 👨‍💻 Author
+
+**Crave – Food Delivery Application**
+
+Developed as a full-stack mobile application project using modern mobile and backend technologies.
+
+---
+
+## 📄 License
+
+This project is available for educational and portfolio purposes.
+
+---
+<p align="center">
+  Made with ❤️ and React Native
+</p>
 ```
-
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
-
-### Other setup steps
-
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
